@@ -1,0 +1,228 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="style.css">
+  <title>Blog Website</title>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">VibeWrites</div>
+
+      <nav>
+        <ul>
+          <li><a href="login.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html" class="active">Blog</a></li>
+        </ul>
+      </nav>
+    </header>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+}
+
+.container{
+    width:400px;
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+.title{
+    text-align:center;
+    margin-bottom:20px;
+    color:#333;
+}
+
+.form-box{
+    display:none;
+}
+
+.form-box.active{
+    display:block;
+}
+
+.input-group{
+    margin-bottom:15px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:5px;
+    color:#555;
+    font-weight:bold;
+}
+
+.input-group input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    outline:none;
+}
+
+.input-group input:focus{
+    border-color:#4facfe;
+}
+
+.btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#4facfe;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#2196f3;
+}
+
+.switch{
+    text-align:center;
+    margin-top:15px;
+}
+
+.switch a{
+    color:#2196f3;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.switch a:hover{
+    text-decoration:underline;
+}
+
+.error{
+    color:red;
+    text-align:center;
+    margin-top:10px;
+    font-size:14px;
+}
+
+.success{
+    color:green;
+    text-align:center;
+    margin-top:10px;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Login Form -->
+    <div class="form-box active" id="loginForm">
+        <h2 class="title">Login</h2>
+
+        <form>
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" placeholder="Enter Email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" placeholder="Enter Password" required minlength="6">
+            </div>
+
+            <button type="submit" class="btn" onclick="index.html">Login</button>
+        </form>
+
+        <div class="switch">
+            Don't have an account?
+            <a href="#" onclick="showRegister()">Register</a>
+        </div>
+    </div>
+
+    <!-- Register Form -->
+    <div class="form-box" id="registerForm">
+        <h2 class="title">Register</h2>
+
+        <form id="register">
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter Full Name" required minlength="3">
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" placeholder="Enter Email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Create Password" required minlength="6">
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required minlength="6">
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+
+            <p id="message"></p>
+        </form>
+
+        <div class="switch">
+            Already have an account?
+            <a href="#" onclick="showLogin()">Login</a>
+        </div>
+    </div>
+
+</div>
+<div class="footer">
+    &copy; 2021, All rights reserved by VibeWrites.
+  </div>
+
+<script>
+function showRegister() {
+    document.getElementById("loginForm").classList.remove("active");
+    document.getElementById("registerForm").classList.add("active");
+}
+
+function showLogin() {
+    document.getElementById("registerForm").classList.remove("active");
+    document.getElementById("loginForm").classList.add("active");
+}
+
+document.getElementById("register").addEventListener("submit", function(e){
+
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    let message = document.getElementById("message");
+
+    if(password !== confirmPassword){
+        e.preventDefault();
+        message.className = "error";
+        message.innerText = "Passwords do not match!";
+    }else{
+        message.className = "success";
+        message.innerText = "Registration successful!";
+    }
+});
+</script>
+</body>
+</html>
